@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hey, My Baby ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, #ffe0e9, #f8b8d0, #e8c8ff);
+      color: #632743;
+      text-align: center;
+    }
+
+    .letter {
+      width: 100%;
+      max-width: 440px;
+      padding: 30px 22px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 12px 35px rgba(100, 35, 70, 0.15);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    button {
+      margin: 15px 0;
+      padding: 15px 24px;
+      border: none;
+      border-radius: 30px;
+      background: #d63375;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+    }
+
+    audio {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    .heart {
+      font-size: 2rem;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: #8b536d;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="letter">
+    <div class="heart">❤️ 🥹 ❤️</div>
+
+    <h1>Hey, My Baby</h1>
+
+    <p>
+      I made this little corner of the internet just for you.
+      No matter how ordinary a day may seem, you have a special
+      way of making my world feel brighter.
+    </p>
+
+    <p>
+      I wanted you to have something personal from me —
+      something you can come back to whenever you miss me.
+      So, tap below and listen to my voice. ❤️
+    </p>
+
+    <button id="playButton" type="button">
+      🎧 Tap to hear my voice
+    </button>
+
+    <audio id="voice" controls preload="metadata">
+      Your browser cannot play this audio.
+    </audio>
+
+    <p id="status" class="note">
+      Made with love, just for you. ❤️
+    </p>
+
+    <p>Forever a little piece of my heart. 💗</p>
+  </main>
+
+  <script>
+    const voice = document.getElementById("voice");
+    const button = document.getElementById("playButton");
+    const status = document.getElementById("status");
+
+    voice.src = "./voice.mp3";
+
+    button.addEventListener("click", async () => {
+      try {
+        status.textContent = "Loading your voice... ❤️";
+        await voice.play();
+        status.textContent = "A little message, straight from my heart. ❤️";
+      } catch (error) {
+        status.textContent =
+          "The audio could not play. Check your internet connection and audio file.";
+      }
+    });
+
+    voice.addEventListener("error", () => {
+      status.textContent =
+        "We couldn't load the voice recording. Please check the uploaded voice.mp3 file.";
+    });
+
+    voice.addEventListener("loadedmetadata", () => {
+      status.textContent = "Your voice message is ready. Tap to listen! ❤️";
+    });
+  </script>
+</body>
+    </html>
